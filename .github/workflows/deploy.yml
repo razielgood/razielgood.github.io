@@ -5,9 +5,8 @@ on:
     branches: [ "develop" ]
   pull_request:
     branches: [ "develop" ]
-
   workflow_dispatch:
-
+  
 jobs:
   deploy-main:
     runs-on: ubuntu-latest
@@ -15,7 +14,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          # Full git history is needed to get a proper list of changed files within `super-linter`
           fetch-depth: 0
 
       - name: Lint Code Base
@@ -24,6 +22,14 @@ jobs:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: "develop"
           VALIDATE_HTML: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Lint Code Base
+        uses: github/super-linter@v4
+        env:
+          VALIDATE_ALL_CODEBASE: false
+          DEFAULT_BRANCH: "develop"
+          VALIDATE_CSS: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Merge commit
