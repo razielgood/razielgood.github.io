@@ -1,0 +1,17 @@
+# Ignorar el directorio node_modules para proyectos Node.js
+node_modules/
+
+# Ignorar archivos de configuración local
+*.env
+
+# Ignorar archivos compilados o generados
+dist/
+build/
+*.log
+.DS_Store
+
+# Ignorar dependencias de proyectos de Java
+/target/
+
+# Ignorar archivos de respaldo de editor de texto
+*~
